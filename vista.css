@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('vista-wallpaper.jpg') center center fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+}
+
+#tela {
+  transition: transform 0.1s;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>WebXingOS XP</title>
+  <link rel="stylesheet" href="webxingos.css" />
+</head>
+<body>
+  <div id="desktop">
+    <div class="icon" onclick="abrirJanela('Meus Documentos')">📁 Meus Documentos</div>
+    <div class="icon" onclick="abrirJanela('Painel de Controle')">⚙️ Painel de Controle</div>
+    <div class="icon" onclick="abrirJanela('Internet Explorer')">🌐 Internet Explorer</div>
+    <div class="icon" onclick="executarAntivirus()">🛡️ Anti-Vírus XP</div>
+    <div class="icon" onclick="abrirJogoSonic()">🌀 Sonic.exe</div>
+    <div class="icon" onclick="instalarWin7()">💽 Instalar Windows 7</div>
+    <div class="icon" onclick="window.location.href='vista.html'">🧊 Instalar Windows Vista</div>
+    <div class="icon" onclick="abrirJanela('Configurações')">⚙️ Configurações</div>
+  </div>
+
+  <div id="janelas"></div>
+
+  <div id="menu-contexto" class="oculto">
+    <ul>
+      <li onclick="abrirJanela('Propriedades')">💻 Propriedades</li>
+      <li onclick="alert('Atualizar simulada!')">🔄 Atualizar</li>
+      <li onclick="alert('Novo arquivo criado.')">📝 Novo Arquivo</li>
+    </ul>
+  </div>
+
+  <script src="webxingos.js"></script>
+</body>
+<div id="barra-xp">
+  <div id="botao-iniciar" onclick="toggleMenu()">🪟 Iniciar</div>
+  <div id="icones-barra">
+    <!-- Ícones futuros aqui -->
+  </div>
+  <div id="hora-xp"></div>
+</div>
+
+<div id="menu-iniciar" class="oculto">
+  <h3>🪟 WebXingOS XP</h3>
+  <ul>
+    <li onclick="abrirJanela('Meus Documentos')">📁 Meus Documentos</li>
+    <li onclick="abrirJanela('Painel de Controle')">⚙️ Painel de Controle</li>
+    <li onclick="abrirJanela('Terminal Reverso')">🧑‍💻 Terminal</li>
+    <li onclick="abrirJanela('Propriedades')">💻 Propriedades</li>
+  </ul>
+</div>
+
+</html>
