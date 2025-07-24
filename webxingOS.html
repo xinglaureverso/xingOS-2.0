@@ -1,50 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>WebXingOS XP</title>
-  <link rel="stylesheet" href="webxingos.css" />
+  <meta charset="UTF-8">
+  <title>XingOS XP</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #0059b3, #000);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: fade 1s ease-in-out;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #3399ff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    #barra-progresso {
+      width: 0%;
+      height: 10px;
+      background: #00ccff;
+      border-radius: 6px;
+      margin-top: 10px;
+      transition: width 0.3s ease-in-out;
+    }
+
+    #painel {
+      text-align: center;
+      max-width: 400px;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-  <div id="desktop">
-    <div class="icon" onclick="abrirJanela('Meus Documentos')">📁 Meus Documentos</div>
-    <div class="icon" onclick="abrirJanela('Painel de Controle')">⚙️ Painel de Controle</div>
-    <div class="icon" onclick="abrirJanela('Internet Explorer')">🌐 Internet Explorer</div>
-    <div class="icon" onclick="executarAntivirus()">🛡️ Anti-Vírus XP</div>
-    <div class="icon" onclick="abrirJogoSonic()">🌀 Sonic.exe</div>
-    <div class="icon" onclick="instalarWin7()">💽 Instalar Windows 7</div>
-    <div class="icon" onclick="window.location.href='vista.html'">🧊 Instalar Windows Vista</div>
-    <div class="icon" onclick="abrirJanela('Configurações')">⚙️ Configurações</div>
+  <div id="painel">
+    <!-- Tela XP -->
+    <div id="xp-tela">
+      <h2>🧓 XingOS XP™</h2>
+      <p>Sistema legado detectado. Atualização altamente recomendada.</p>
+      <button onclick="iniciarAtualizacao()">Atualizar para XingOS 7™</button>
+    </div>
+
+    <!-- Tela de Update -->
+    <div id="update-tela" class="oculto">
+      <h2>🔄 Preparando atualização para XingOS 7™...</h2>
+      <p>Verificando compatibilidade reversa...</p>
+    </div>
+
+    <!-- Tela de Instalação -->
+    <div id="instalacao-tela" class="oculto">
+      <h2>💽 Instalando XingOS 7™</h2>
+      <p id="msg-progresso">Instalando componentes estéticos...</p>
+      <div id="barra-progresso"></div>
+    </div>
   </div>
 
-  <div id="janelas"></div>
+  <script>
+    function iniciarAtualizacao() {
+      document.getElementById("xp-tela").classList.add("oculto");
+      document.getElementById("update-tela").classList.remove("oculto");
 
-  <div id="menu-contexto" class="oculto">
-    <ul>
-      <li onclick="abrirJanela('Propriedades')">💻 Propriedades</li>
-      <li onclick="alert('Atualizar simulada!')">🔄 Atualizar</li>
-      <li onclick="alert('Novo arquivo criado.')">📝 Novo Arquivo</li>
-    </ul>
-  </div>
+      setTimeout(() => {
+        document.getElementById("update-tela").classList.add("oculto");
+        document.getElementById("instalacao-tela").classList.remove("oculto");
+        iniciarInstalacao();
+      }, 3000);
+    }
 
-  <script src="webxingos.js"></script>
+    function iniciarInstalacao() {
+      const barra = document.getElementById("barra-progresso");
+      const msg = document.getElementById("msg-progresso");
+      let progresso = 0;
+
+      const instalando = setInterval(() => {
+        progresso += 10;
+        barra.style.width = `${progresso}%`;
+        msg.textContent = `Instalando... ${progresso}%`;
+
+        if (progresso >= 100) {
+          clearInterval(instalando);
+          msg.textContent = "✅ Instalação concluída! Redirecionando...";
+          setTimeout(() => {
+            window.location.href = "https://xingos7.vercel.app";
+          }, 3000);
+        }
+      }, 500);
+    }
+  </script>
 </body>
-<div id="barra-xp">
-  <div id="botao-iniciar" onclick="toggleMenu()">🪟 Iniciar</div>
-  <div id="icones-barra">
-    <!-- Ícones futuros aqui -->
-  </div>
-  <div id="hora-xp"></div>
-</div>
-
-<div id="menu-iniciar" class="oculto">
-  <h3>🪟 WebXingOS XP</h3>
-  <ul>
-    <li onclick="abrirJanela('Meus Documentos')">📁 Meus Documentos</li>
-    <li onclick="abrirJanela('Painel de Controle')">⚙️ Painel de Controle</li>
-    <li onclick="abrirJanela('Terminal Reverso')">🧑‍💻 Terminal</li>
-    <li onclick="abrirJanela('Propriedades')">💻 Propriedades</li>
-  </ul>
-</div>
-
 </html>
